@@ -24,12 +24,14 @@
       camera.position.set( 0, 0, 100 );
       camera.lookAt( 0, 0, 0 );
 
+      
       var renderer = new THREE.WebGLRenderer();
       
-
+      
       renderer.setSize( window.innerWidth, window.innerHeight );
-
+      
       document.body.appendChild( renderer.domElement );
+      var controls = new THREE.OrbitControls( camera, renderer.domElement );
 
       var geometry = new THREE.SphereGeometry( 20, 32, 32 );
       var material = new THREE.MeshBasicMaterial();
@@ -38,11 +40,12 @@
 
       var sphere = new THREE.Mesh( geometry, material );
       scene.add( sphere );
-
+      
+      controls.update();
       function play () {
         requestAnimationFrame( play );
-        
-
+  
+        controls.update();
         renderer.render( scene, camera );
       }
 
